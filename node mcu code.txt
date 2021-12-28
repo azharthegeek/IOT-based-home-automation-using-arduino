@@ -1,0 +1,41 @@
+#define BLYNK_PRINT Serial
+#include <ESP8266WiFi.h>
+#include <BlynkSimpleEsp8266.h>
+ 
+char auth[] = "FOGcF7HORvCsF_eXy_ZrCimYN7hsBMyN";
+char ssid[] = "Niazi House_EXT";
+char pass[] = "Niazi7979";
+ 
+  int relay1 = 12;  // D6 pin 
+  int relay2 = 14;  // D2 pin 
+  int relay3 = 4;   // D1 pin 
+  int relay4 = 5;   // D5 pin 
+ 
+void setup()
+{
+  Serial.begin(115200);
+
+  pinMode(LED_BUILTIN, OUTPUT);
+ 
+  pinMode(relay1,OUTPUT);
+  pinMode(relay2,OUTPUT);
+  pinMode(relay3,OUTPUT);
+  pinMode(relay4,OUTPUT);
+ 
+  digitalWrite(relay1, HIGH);
+  digitalWrite(relay2, HIGH);
+  digitalWrite(relay3, HIGH);
+  digitalWrite(relay4, HIGH);
+ 
+  Blynk.begin(auth, ssid, pass);
+}
+ 
+void loop()
+{
+  digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
+  delay(1000);               
+  digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
+  delay(1000);                       
+  
+  Blynk.run();
+}
